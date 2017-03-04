@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e20330</color>
+    <color name="colorPrimaryDark">#b40226</color>
+    <color name="colorAccent">#000000</color>
+
+    <color name="formBg">#e20330</color>
+    <color name="sideNavBg">#d05478</color>
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:background="@color/formBg"
+    tools:context="dev.adi.poc.rotarydemo.ui.LoginActivity">
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:transitionName="anim_logo"
+            android:id="@+id/img_logo_main"
+            android:padding="16dp"
+            android:src="@drawable/logo_trans"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" />
+
+        <LinearLayout
+            style="@style/LoginFormStyle"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:text="Login"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                style="@style/EtBgWhiteNoBorder"
+                android:id="@+id/et_username"
+                android:hint="@string/prompt_username"/>
+
+            <EditText
+                style="@style/EtBgWhiteNoBorder"
+                android:id="@+id/et_password"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword"/>
+
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--style="@style/CustTextInput"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<EditText-->
+                    <!--style="@style/CustEditText"-->
+                    <!--android:id="@+id/et_username"-->
+                    <!--android:hint="@string/prompt_username"/>-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--style="@style/CustTextInput"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<EditText-->
+                    <!--style="@style/CustEditText"-->
+                    <!--android:id="@+id/et_password"-->
+                    <!--android:hint="@string/prompt_password"-->
+                    <!--android:inputType="textPassword"/>-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+            <Button
+                style="@style/LoginBtnStyle"
+                android:id="@+id/email_sign_in_button" />
+
+    </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+

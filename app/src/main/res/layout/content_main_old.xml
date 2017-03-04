@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <dev.adi.poc.rotarydemo.view.InfoCardView
+        android:id="@+id/icard_notice_board"
+        android:layout_alignParentTop="true"
+        custom:heading="Notice Board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <dev.adi.poc.rotarydemo.view.InfoCardView
+        android:id="@+id/icard_upcoming_events"
+        android:layout_below="@+id/icard_notice_board"
+        custom:heading="Upcomming Events"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <dev.adi.poc.rotarydemo.view.InfoCardView
+        android:id="@+id/icard_today_bday"
+        android:layout_below="@+id/icard_upcoming_events"
+        custom:heading="Born Today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <dev.adi.poc.rotarydemo.view.InfoCardView
+        android:id="@+id/icard_today_anni"
+        android:layout_below="@+id/icard_today_bday"
+        custom:heading="Anniversary Today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

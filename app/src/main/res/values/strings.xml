@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Rotary Demo</string>
+    <string name="prompt_sign_in">Sign In</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_first_name">First Name</string>
+    <string name="prompt_last_name">Last Name</string>
+</resources>

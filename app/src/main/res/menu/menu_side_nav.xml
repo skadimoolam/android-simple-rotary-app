@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/mig_group_test" >
+        <item android:title="Add User"
+            android:id="@+id/mi_add_user" />
+        <item android:title="Project Calender"
+            android:id="@+id/mi_project_calender" />
+        <item android:title="History Of District" />
+        <item android:title="District Officials" />
+        <item android:title="Upload" />
+    </group>
+</menu>
