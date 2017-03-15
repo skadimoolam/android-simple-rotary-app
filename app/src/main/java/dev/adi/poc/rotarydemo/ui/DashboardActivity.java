@@ -8,26 +8,44 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.afollestad.ason.Ason;
+
+import java.util.ArrayList;
+
 import dev.adi.poc.rotarydemo.R;
+import dev.adi.poc.rotarydemo.adapter.DashGridAdapter;
+import dev.adi.poc.rotarydemo.helper.Config;
+import dev.adi.poc.rotarydemo.model.DashButtonModel;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     final String TAG = DashboardActivity.class.getSimpleName();
     SharedPreferences.Editor sharePrefEditor;
+    SharedPreferences preferences;
     
     DrawerLayout navDrawer;
     NavigationView navMenu;
+    RecyclerView rvDashGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.side_nav);
 
-        getSupportActionBar().setTitle("Welcome [username]");
+        preferences = getSharedPreferences(Config.perf_name, MODE_PRIVATE);
+        sharePrefEditor = preferences.edit();
+        Log.i(TAG, preferences.getString("user-data", "test-data"));
+        Ason ason = new Ason(preferences.getString("user-data", "test-data"));
+
+        getSupportActionBar().setTitle("Welcome " + ason.get("first_name").toString());
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -35,18 +53,48 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         navDrawer = (DrawerLayout) findViewById(R.id.drawer);
         navMenu = (NavigationView) findViewById(R.id.nav);
         navMenu.setNavigationItemSelectedListener(this);
+        rvDashGrid = (RecyclerView) findViewById(R.id.rv_dash_grid);
+        rvDashGrid.setLayoutManager(new GridLayoutManager(this, 3));
 
-        findViewById(R.id.dash_btn_district).setOnClickListener(this);
-        findViewById(R.id.dash_btn_memebers).setOnClickListener(this);
-        findViewById(R.id.dash_btn_calender).setOnClickListener(this);
-        findViewById(R.id.dash_btn_notice).setOnClickListener(this);
-        findViewById(R.id.dash_btn_bday).setOnClickListener(this);
-        findViewById(R.id.dash_btn_events).setOnClickListener(this);
-        findViewById(R.id.dash_btn_createclub).setOnClickListener(this);
+        ArrayList<DashButtonModel> listButtons = new ArrayList<>();
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_about, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_avenue_service, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_calender, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_clue_meeting, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_projects, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_team, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_home, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_member_directory, MembersActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_news_letter, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_search, DummyActivity.class));
+
+        rvDashGrid.setAdapter(new DashGridAdapter(this, listButtons));
+
+//        findViewById(R.id.dash_btn_district).setOnClickListener(this);
+//        findViewById(R.id.dash_btn_memebers).setOnClickListener(this);
+//        findViewById(R.id.dash_btn_calender).setOnClickListener(this);
+//        findViewById(R.id.dash_btn_notice).setOnClickListener(this);
+//        findViewById(R.id.dash_btn_bday).setOnClickListener(this);
+//        findViewById(R.id.dash_btn_events).setOnClickListener(this);
+//        findViewById(R.id.dash_btn_createclub).setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("Logout");
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getTitle() == "Logout") {
+            sharePrefEditor.remove("user-data");
+            sharePrefEditor.remove("user-id");
+            sharePrefEditor.apply();
+            sharePrefEditor.commit();
+            startActivity(new Intent(this, SplashActivity.class));
+        }
+
         if (item.getItemId() == android.R.id.home) {
             if (navDrawer.isDrawerOpen(GravityCompat.START)) {
                 navDrawer.closeDrawer(GravityCompat.START);

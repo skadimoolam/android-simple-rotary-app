@@ -15,15 +15,15 @@ import com.afollestad.ason.Ason;
 import com.afollestad.bridge.Form;
 
 import dev.adi.poc.rotarydemo.R;
+import dev.adi.poc.rotarydemo.helper.Config;
 import dev.adi.poc.rotarydemo.helper.HttpHelper;
 import dev.adi.poc.rotarydemo.helper.UrlHelper;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    public static final String PERF_NAME = "rotery_demo";
     final String TAG = RegisterActivity.class.getSimpleName();
     ProgressDialog progressDialog;
-    EditText etUsername, etPassword;
+    EditText etFirstname, etLastname, etEmail, etUsername, etPassword;
     SharedPreferences.Editor sharePrefEditor;
     SharedPreferences preferences;
 
@@ -32,44 +32,39 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        etFirstname = (EditText) findViewById(R.id.et_first_name);
+        etLastname = (EditText) findViewById(R.id.et_last_name);
+        etEmail = (EditText) findViewById(R.id.et_email);
         etUsername = (EditText) findViewById(R.id.et_username);
         etPassword = (EditText) findViewById(R.id.et_password);
 
-        preferences = getSharedPreferences(PERF_NAME, MODE_PRIVATE);
+        preferences = getSharedPreferences(Config.perf_name, MODE_PRIVATE);
         sharePrefEditor = preferences.edit();
-
-        if (!TextUtils.isEmpty(preferences.getString("user-data", ""))) {
-            Intent intent = new Intent(this, DashboardActivity.class);
-            intent.putExtra("user_id", preferences.getString("user-id", ""));
-            startActivity(intent);
-        }
     }
 
-    public void attemptLogin(View view) {
-        Intent intent = new Intent(this, DashboardActivity.class);
-        startActivity(intent);
-    }
-
-    public void attemptLoginFinal(View view) {
+    public void attemptReg(View view) {
         progressDialog = ProgressDialog.show(this, "Loading...", "Please wait!", false);
 
         if (validateForm()) {
             if (HttpHelper.hasNetworkAccess(this)) {
                 Form formData = new Form();
+                formData.add("first_name", etFirstname.getText().toString());
+                formData.add("last_name", etLastname.getText().toString());
+                formData.add("email", etEmail.getText().toString());
                 formData.add("username", etUsername.getText().toString());
                 formData.add("password", etPassword.getText().toString());
+                formData.add("api", "insert");
+                formData.add("group_id", "2");
 
-                HttpHelper.postData(UrlHelper.url_login, formData, null, new HttpHelper.OnRequestCompleteListener() {
+                HttpHelper.postData(Config.url_register, formData, null, new HttpHelper.OnRequestCompleteListener() {
                     @Override
                     public void OnSuccess(Ason data) {
-                        if (data.get("code").equals("1")) {
-                            sharePrefEditor.putString("user-data", data.toString());
-                            sharePrefEditor.putString("user-id", data.get("data.id").toString());
-                            sharePrefEditor.apply();
+                        if (data.get("code").equals("success")) {
+                            showToast(data.get("message").toString());
 
-                            Intent intent = new Intent(RegisterActivity.this, DashboardActivity.class);
-                            intent.putExtra("user_id", data.get("data.id").toString());
-                            startActivity(intent);
+                            Intent i = new Intent(RegisterActivity.this, SplashActivity.class);
+                            i.putExtra("fromReg", true);
+                            startActivity(i);
                         } else {
                             showToast(data.get("message").toString());
                             Log.i(TAG, "user id: " + data.get("code"));
@@ -86,17 +81,31 @@ public class RegisterActivity extends AppCompatActivity {
                 });
             } else {
                 showToast("Cannot connect to the Internet");
+                progressDialog.dismiss();
             }
+        } else {
+            showToast("Fill out all the fields");
+            progressDialog.dismiss();
         }
     }
 
     private boolean validateForm() {
-        if (etUsername.getText().length() == 0) {
+        if (etFirstname.getText().toString().length() == 0) {
+            etFirstname.setError("First name cannot be blank");
+            return false;
+        }
+
+        if (etEmail.getText().toString().length() == 0) {
+            etEmail.setError("Email cannot be blank");
+            return false;
+        }
+
+        if (etUsername.getText().toString().length() == 0) {
             etUsername.setError("Username cannot be blank");
             return false;
         }
 
-        if (etPassword.getText().length() == 0) {
+        if (etPassword.getText().toString().length() == 0) {
             etPassword.setError("Password cannot be blank");
             return false;
         }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_view_home"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:src="@drawable/ic_account_circle"
+        android:layout_weight=".3"
+        android:layout_width="0dp"
+        android:layout_height="70dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight=".7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_mem_name"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:text="Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_mem_contact"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:text="8989898989"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_mem_email"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="someone@something.com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_mem_dob"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="24 Nov"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_mem_marriage"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="26 Nov"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_mem_blood_group"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="B+"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_marginTop="4dp"
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </LinearLayout>
+</LinearLayout>

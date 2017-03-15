@@ -53,7 +53,6 @@
                         style="@style/EtBgWhiteNoBorder"
                         android:id="@+id/et_first_name"
                         android:inputType="textCapWords"
-                        android:text="Adi"
                         android:hint="First Name"
                         android:nextFocusDown="@+id/et_last_name"/>
 
@@ -70,7 +69,6 @@
                         style="@style/EtBgWhiteNoBorder"
                         android:id="@+id/et_last_name"
                         android:inputType="textCapWords"
-                        android:text="SK"
                         android:hint="Last Name"
                         android:nextFocusDown="@+id/et_last_name"/>
 
@@ -88,7 +86,6 @@
                 <EditText
                     style="@style/EtBgWhiteNoBorder"
                     android:id="@+id/et_username"
-                    android:text="adi7991"
                     android:hint="Username"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -104,7 +101,6 @@
                     style="@style/EtBgWhiteNoBorder"
                     android:id="@+id/et_email"
                     android:inputType="textEmailAddress"
-                    android:text="adi@adi.com"
                     android:hint="Email"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -120,12 +116,12 @@
                     style="@style/EtBgWhiteNoBorder"
                     android:id="@+id/et_password"
                     android:inputType="textPassword"
-                    android:text="12345678"
                     android:hint="Password"/>
 
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:onClick="attemptReg"
                 style="@style/LoginBtnStyle"
                 android:text="Register"
                 android:id="@+id/email_sign_in_button" />

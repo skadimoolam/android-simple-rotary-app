@@ -35,8 +35,6 @@ public class SplashActivity extends AppCompatActivity {
     ImageView ivLogoMain;
     ViewPager splashSlider;
     ArrayList<Fragment> pageFragments;
-    ProgressDialog progressDialog;
-    EditText etUsername, etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +47,24 @@ public class SplashActivity extends AppCompatActivity {
         preferences = getSharedPreferences(Config.perf_name, MODE_PRIVATE);
         sharePrefEditor = preferences.edit();
 
+        if (!preferences.getString("user-data", "test-data").equals("test-data")) {
+            startActivity(new Intent(this, DashboardActivity.class));
+        }
+
+        Log.i(TAG, preferences.getString("user-data", "test-data"));
+
         pageFragments = new ArrayList<>();
         pageFragments.add(SplashPageFragment.newInstance(R.drawable.splash_img_1));
         pageFragments.add(SplashPageFragment.newInstance(R.drawable.splash_img_2));
+        pageFragments.add(SplashPageFragment.newInstance(R.drawable.splash_img_3));
         pageFragments.add(LoginPageFragment.newInstance());
 
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), pageFragments);
         splashSlider.setAdapter(pagerAdapter);
 
-        etUsername = (EditText) findViewById(R.id.et_username);
-        etPassword = (EditText) findViewById(R.id.et_password);
+        if (getIntent().getBooleanExtra("fromReg", false)) {
+            splashSlider.setCurrentItem(3, false);
+        }
     }
 
     public void gotoLast(View view) {

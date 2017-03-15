@@ -54,13 +54,16 @@ public class LoginPageFragment extends Fragment {
         btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Login Clicked", Toast.LENGTH_SHORT).show();
                 attemptLogin();
             }
         });
 
         return view;
     }
+
+//    public void attemptLogin() {
+//        startActivity(new Intent(context, DashboardActivity.class));
+//    }
 
     public void attemptLogin() {
         progressDialog = ProgressDialog.show(context, "Loading...", "Please wait!", false);
@@ -74,8 +77,8 @@ public class LoginPageFragment extends Fragment {
                 HttpHelper.postData(Config.url_login, formData, null, new HttpHelper.OnRequestCompleteListener() {
                     @Override
                     public void OnSuccess(Ason data) {
-                        if (data.get("code").equals("1")) {
-                            sharePrefEditor.putString("user-data", data.toString());
+                        if (data.get("code").equals("success")) {
+                            sharePrefEditor.putString("user-data", data.get("data").toString());
                             sharePrefEditor.putString("user-id", data.get("data.id").toString());
                             sharePrefEditor.apply();
 
@@ -99,17 +102,21 @@ public class LoginPageFragment extends Fragment {
 
             } else {
                 showToast("Cannot connect to the Internet");
+                progressDialog.dismiss();
             }
+        } else {
+            showToast("Fill out all the fields");
+            progressDialog.dismiss();
         }
     }
 
     private boolean validateForm() {
-        if (etUsername.getText().length() == 0) {
+        if (etUsername.getText().toString().length() == 0) {
             etUsername.setError("Username cannot be blank");
             return false;
         }
 
-        if (etPassword.getText().length() == 0) {
+        if (etPassword.getText().toString().length() == 0) {
             etPassword.setError("Password cannot be blank");
             return false;
         }

@@ -13,7 +13,7 @@ public class DummyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dummy);
 
-        getSupportActionBar().setTitle("Dummy Page");
+        getSupportActionBar().setTitle("Sample Page");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
