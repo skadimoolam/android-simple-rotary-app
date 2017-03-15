@@ -1,65 +1,77 @@
-package dev.adi.poc.rotarydemo.ui;
+package dev.adi.poc.rotarydemo.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.afollestad.ason.Ason;
 import com.afollestad.bridge.Form;
 
+import java.util.ArrayList;
+
 import dev.adi.poc.rotarydemo.R;
+import dev.adi.poc.rotarydemo.helper.Config;
 import dev.adi.poc.rotarydemo.helper.HttpHelper;
-import dev.adi.poc.rotarydemo.helper.UrlHelper;
+import dev.adi.poc.rotarydemo.ui.DashboardActivity;
+import dev.adi.poc.rotarydemo.ui.SplashActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginPageFragment extends Fragment {
 
-    final String TAG = LoginActivity.class.getSimpleName();
-    public static final String PERF_NAME = "rotery_demo";
-    ProgressDialog progressDialog;
-    EditText etUsername, etPassword;
+    final String TAG = LoginPageFragment.class.getSimpleName();
     SharedPreferences.Editor sharePrefEditor;
     SharedPreferences preferences;
 
+    ProgressDialog progressDialog;
+    EditText etUsername, etPassword;
+    Context context;
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        etUsername = (EditText) findViewById(R.id.et_username);
-        etPassword = (EditText) findViewById(R.id.et_password);
-
-        preferences = getSharedPreferences(PERF_NAME, MODE_PRIVATE);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        context = getContext();
+        preferences = context.getSharedPreferences(Config.perf_name, context.MODE_PRIVATE);
         sharePrefEditor = preferences.edit();
 
-        if (!TextUtils.isEmpty(preferences.getString("user-data", ""))) {
-            Intent intent = new Intent(this, DashboardActivity.class);
-            intent.putExtra("user_id", preferences.getString("user-id", ""));
-            startActivity(intent);
-        }
+        View view = inflater.inflate(R.layout.splash_page_3, container, false);
+
+        etUsername = (EditText) view.findViewById(R.id.et_username);
+        etPassword = (EditText) view.findViewById(R.id.et_password);
+
+        Button btnSignin = (Button) view.findViewById(R.id.email_sign_in_button);
+        btnSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Login Clicked", Toast.LENGTH_SHORT).show();
+                attemptLogin();
+            }
+        });
+
+        return view;
     }
 
-    public void attemptLogin(View view) {
-        Intent intent = new Intent(this, DashboardActivity.class);
-        startActivity(intent);
-    }
-
-    public void attemptLoginFinal(View view) {
-        progressDialog = ProgressDialog.show(this, "Loading...", "Please wait!", false);
+    public void attemptLogin() {
+        progressDialog = ProgressDialog.show(context, "Loading...", "Please wait!", false);
 
         if (validateForm()) {
-            if (HttpHelper.hasNetworkAccess(this)) {
+            if (HttpHelper.hasNetworkAccess(context)) {
                 Form formData = new Form();
                 formData.add("username", etUsername.getText().toString());
                 formData.add("password", etPassword.getText().toString());
 
-                HttpHelper.postData(UrlHelper.url_login, formData, null, new HttpHelper.OnRequestCompleteListener() {
+                HttpHelper.postData(Config.url_login, formData, null, new HttpHelper.OnRequestCompleteListener() {
                     @Override
                     public void OnSuccess(Ason data) {
                         if (data.get("code").equals("1")) {
@@ -67,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                             sharePrefEditor.putString("user-id", data.get("data.id").toString());
                             sharePrefEditor.apply();
 
-                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            Intent intent = new Intent(context, DashboardActivity.class);
                             intent.putExtra("user_id", data.get("data.id").toString());
                             startActivity(intent);
                         } else {
@@ -106,6 +118,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+    }
+
+    public static LoginPageFragment newInstance() {
+        return new LoginPageFragment();
     }
 }

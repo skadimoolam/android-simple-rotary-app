@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin"
-    android:background="@color/formBg"
-    tools:context="dev.adi.poc.rotarydemo.ui.LoginActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:background="@color/formBg"
+                tools:context="dev.adi.poc.rotarydemo.ui.LoginActivity">
 
     <LinearLayout
         android:layout_centerInParent="true"
@@ -28,6 +29,7 @@
             android:layout_width="match_parent">
 
             <TextView
+                android:textColor="@android:color/white"
                 android:paddingBottom="10dp"
                 android:gravity="center"
                 android:text="Register"
@@ -40,105 +42,88 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_weight=".5"
-                    style="@style/EtBgWhiteNoBorder"
-                    android:id="@+id/et_first_name"
-                    android:inputType="textCapWords"
-                    android:hint="@string/prompt_first_name"
-                    android:nextFocusDown="@+id/et_last_name"/>
+                    app:hintTextAppearance="@style/TextAppearenceNew"
+                    android:textColorHint="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <EditText
+                    <EditText
+                        style="@style/EtBgWhiteNoBorder"
+                        android:id="@+id/et_first_name"
+                        android:inputType="textCapWords"
+                        android:text="Adi"
+                        android:hint="First Name"
+                        android:nextFocusDown="@+id/et_last_name"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_weight=".5"
-                    style="@style/EtBgWhiteNoBorder"
-                    android:id="@+id/et_last_name"
-                    android:hint="@string/prompt_last_name"/>
+                    app:hintTextAppearance="@style/TextAppearenceNew"
+                    android:textColorHint="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <!--<android.support.design.widget.TextInputLayout-->
-                    <!--style="@style/CustTextInput"-->
-                    <!--android:layout_weight=".5"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content">-->
+                    <EditText
+                        style="@style/EtBgWhiteNoBorder"
+                        android:id="@+id/et_last_name"
+                        android:inputType="textCapWords"
+                        android:text="SK"
+                        android:hint="Last Name"
+                        android:nextFocusDown="@+id/et_last_name"/>
 
-                    <!--<EditText-->
-                        <!--style="@style/CustEditText"-->
-                        <!--android:id="@+id/et_first_name"-->
-                        <!--android:inputType="textCapWords"-->
-                        <!--android:hint="@string/prompt_first_name"-->
-                        <!--android:nextFocusDown="@+id/et_last_name"/>-->
-
-                <!--</android.support.design.widget.TextInputLayout>-->
-
-                <!--<android.support.design.widget.TextInputLayout-->
-                    <!--style="@style/CustTextInput"-->
-                    <!--android:layout_weight=".5"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:inputType="textCapWords"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<EditText-->
-                        <!--style="@style/CustEditText"-->
-                        <!--android:id="@+id/et_last_name"-->
-                        <!--android:hint="@string/prompt_last_name"/>-->
-
-                <!--</android.support.design.widget.TextInputLayout>-->
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
-            <EditText
-                style="@style/EtBgWhiteNoBorder"
-                android:id="@+id/et_username"
-                android:hint="@string/prompt_username"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight=".5"
+                app:hintTextAppearance="@style/TextAppearenceNew"
+                android:textColorHint="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                style="@style/EtBgWhiteNoBorder"
-                android:id="@+id/et_email"
-                android:inputType="textEmailAddress"
-                android:hint="@string/prompt_email"/>
+                <EditText
+                    style="@style/EtBgWhiteNoBorder"
+                    android:id="@+id/et_username"
+                    android:text="adi7991"
+                    android:hint="Username"/>
 
-            <EditText
-                style="@style/EtBgWhiteNoBorder"
-                android:id="@+id/et_password"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"/>
+            </android.support.design.widget.TextInputLayout>
 
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--style="@style/CustTextInput"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight=".5"
+                app:hintTextAppearance="@style/TextAppearenceNew"
+                android:textColorHint="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <!--<EditText-->
-                    <!--style="@style/CustEditText"-->
-                    <!--android:id="@+id/et_username"-->
-                    <!--android:hint="@string/prompt_username"/>-->
+                <EditText
+                    style="@style/EtBgWhiteNoBorder"
+                    android:id="@+id/et_email"
+                    android:inputType="textEmailAddress"
+                    android:text="adi@adi.com"
+                    android:hint="Email"/>
 
-            <!--</android.support.design.widget.TextInputLayout>-->
+            </android.support.design.widget.TextInputLayout>
 
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--style="@style/CustTextInput"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_weight=".5"
+                app:hintTextAppearance="@style/TextAppearenceNew"
+                android:textColorHint="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <!--<EditText-->
-                    <!--style="@style/CustEditText"-->
-                    <!--android:id="@+id/et_email"-->
-                    <!--android:inputType="textEmailAddress"-->
-                    <!--android:hint="@string/prompt_email"/>-->
+                <EditText
+                    style="@style/EtBgWhiteNoBorder"
+                    android:id="@+id/et_password"
+                    android:inputType="textPassword"
+                    android:text="12345678"
+                    android:hint="Password"/>
 
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--style="@style/CustTextInput"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-                <!--<EditText-->
-                    <!--style="@style/CustEditText"-->
-                    <!--android:id="@+id/et_password"-->
-                    <!--android:hint="@string/prompt_password"-->
-                    <!--android:inputType="textPassword"/>-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 style="@style/LoginBtnStyle"
