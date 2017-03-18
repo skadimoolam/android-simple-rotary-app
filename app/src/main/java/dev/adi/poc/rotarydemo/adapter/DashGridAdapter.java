@@ -36,7 +36,6 @@ public class DashGridAdapter extends RecyclerView.Adapter<DashGridAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         final DashButtonModel btnModel = listButtons.get(position);
 
-        Log.i("DashGridAdapter", "pos: " + position + " img : " + btnModel.btnImg);
         holder.ivBtnImage.setImageResource(btnModel.btnImg);
         if (btnModel.activityName != null) {
             holder.viewHome.setOnClickListener(new View.OnClickListener() {

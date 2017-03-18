@@ -7,11 +7,12 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/iv_member_photo"
         android:layout_gravity="center"
         android:src="@drawable/ic_account_circle"
         android:layout_weight=".3"
         android:layout_width="0dp"
-        android:layout_height="70dp"/>
+        android:layout_height="100dp"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -27,8 +28,19 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/tv_mem_contact"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/tv_mem_designation"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textSize="18sp"
+            android:text="President"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/tv_mem_phone"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textSize="18sp"
             android:text="8989898989"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -47,19 +59,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tv_mem_marriage"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:text="26 Nov"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_mem_blood_group"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:text="B+"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
         <View
             android:layout_marginTop="4dp"

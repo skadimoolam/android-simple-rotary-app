@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,9 +15,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.ason.Ason;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -42,7 +46,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         preferences = getSharedPreferences(Config.perf_name, MODE_PRIVATE);
         sharePrefEditor = preferences.edit();
-        Log.i(TAG, preferences.getString("user-data", "test-data"));
         Ason ason = new Ason(preferences.getString("user-data", "test-data"));
 
         getSupportActionBar().setTitle("Welcome " + ason.get("first_name").toString());
@@ -56,6 +59,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         rvDashGrid = (RecyclerView) findViewById(R.id.rv_dash_grid);
         rvDashGrid.setLayoutManager(new GridLayoutManager(this, 3));
 
+//        Toast.makeText(this, ""+navMenu.getHeaderCount(),Toast.LENGTH_SHORT).show();
+
+        TextView tvNavUsername = (TextView) navMenu.getHeaderView(0).findViewById(R.id.tv_nav_username);
+        tvNavUsername.setText(ason.get("username").toString());
+
         ArrayList<DashButtonModel> listButtons = new ArrayList<>();
         listButtons.add(new DashButtonModel(R.drawable.dash_icon_about, DummyActivity.class));
         listButtons.add(new DashButtonModel(R.drawable.dash_icon_avenue_service, DummyActivity.class));
@@ -65,18 +73,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_team, DummyActivity.class));
         listButtons.add(new DashButtonModel(R.drawable.dash_icon_home, DummyActivity.class));
         listButtons.add(new DashButtonModel(R.drawable.dash_icon_member_directory, MembersActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_news_letter, DummyActivity.class));
+        listButtons.add(new DashButtonModel(R.drawable.dash_icon_news_letter, NewsLetterActivity.class));
         listButtons.add(new DashButtonModel(R.drawable.dash_icon_search, DummyActivity.class));
 
         rvDashGrid.setAdapter(new DashGridAdapter(this, listButtons));
-
-//        findViewById(R.id.dash_btn_district).setOnClickListener(this);
-//        findViewById(R.id.dash_btn_memebers).setOnClickListener(this);
-//        findViewById(R.id.dash_btn_calender).setOnClickListener(this);
-//        findViewById(R.id.dash_btn_notice).setOnClickListener(this);
-//        findViewById(R.id.dash_btn_bday).setOnClickListener(this);
-//        findViewById(R.id.dash_btn_events).setOnClickListener(this);
-//        findViewById(R.id.dash_btn_createclub).setOnClickListener(this);
     }
 
     @Override
@@ -93,6 +93,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             sharePrefEditor.apply();
             sharePrefEditor.commit();
             startActivity(new Intent(this, SplashActivity.class));
+            finish();
         }
 
         if (item.getItemId() == android.R.id.home) {

@@ -13,34 +13,33 @@ import com.afollestad.ason.Ason;
 import com.afollestad.ason.AsonArray;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import dev.adi.poc.rotarydemo.R;
 import dev.adi.poc.rotarydemo.adapter.EventListAdapter;
-import dev.adi.poc.rotarydemo.adapter.MemberListAdapter;
 import dev.adi.poc.rotarydemo.helper.Config;
 import dev.adi.poc.rotarydemo.helper.HttpHelper;
 import dev.adi.poc.rotarydemo.model.EventModel;
-import dev.adi.poc.rotarydemo.model.MemberModel;
 
-public class MembersActivity extends AppCompatActivity {
+public class NewsLetterActivity extends AppCompatActivity {
 
-    public static final String TAG = MembersActivity.class.getSimpleName();
+    public static final String TAG = NewsLetterActivity.class.getSimpleName();
 
-    RecyclerView rvListMembers;
+    RecyclerView rvListEvents;
     ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_members);
+        setContentView(R.layout.activity_newsletter);
 
-        getSupportActionBar().setTitle("Members");
+        getSupportActionBar().setTitle("News Letter");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        rvListMembers = (RecyclerView) findViewById(R.id.rv_list_memebers);
-        rvListMembers.setLayoutManager(new LinearLayoutManager(this));
+        rvListEvents = (RecyclerView) findViewById(R.id.rv_list_events);
+        rvListEvents.setLayoutManager(new LinearLayoutManager(this));
 
         getData();
     }
@@ -48,18 +47,18 @@ public class MembersActivity extends AppCompatActivity {
     private void getData() {
         if (HttpHelper.hasNetworkAccess(this)) {
             progressDialog = ProgressDialog.show(this, "Loading...", "Please wait!", false);
-            HttpHelper.getData(Config.url_get_members, null, new HttpHelper.OnRequestCompleteListener() {
+            HttpHelper.getData(Config.url_get_events, null, new HttpHelper.OnRequestCompleteListener() {
                 @Override
                 public void OnSuccess(Ason data) {
                     try {
-                        AsonArray<MemberModel> asonItems = new AsonArray<>(data.get("data").toString());
-                        List<MemberModel> items = asonItems.deserializeList(MemberModel.class);
+                        AsonArray<EventModel> asonItems = new AsonArray<>(data.get("data").toString());
+                        List<EventModel> items = asonItems.deserializeList(EventModel.class);
                         Log.i(TAG, items.toString());
-                        rvListMembers.setAdapter(new MemberListAdapter(MembersActivity.this, items));
+                        rvListEvents.setAdapter(new EventListAdapter(NewsLetterActivity.this, items));
                     } catch (Exception e) {
                         e.printStackTrace();
                         findViewById(R.id.tv_prompt_no_data).setVisibility(View.VISIBLE);
-                        rvListMembers.setVisibility(View.GONE);
+                        rvListEvents.setVisibility(View.GONE);
                     }
 
                     progressDialog.dismiss();
@@ -79,5 +78,4 @@ public class MembersActivity extends AppCompatActivity {
     private void showToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
-
 }

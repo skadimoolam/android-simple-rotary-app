@@ -65,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Intent i = new Intent(RegisterActivity.this, SplashActivity.class);
                             i.putExtra("fromReg", true);
                             startActivity(i);
+                            finish();
                         } else {
                             showToast(data.get("message").toString());
                             Log.i(TAG, "user id: " + data.get("code"));

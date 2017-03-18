@@ -6,8 +6,8 @@ public class Config {
 
     public static String url_login = BASE_URL + "api/login";
     public static String url_register = BASE_URL + "api/sign_up_api";
-    public static String url_inbox_view = BASE_URL + "api/inbox_view";
-    public static String url_message_view = BASE_URL + "api/view_message";
+    public static String url_get_members = BASE_URL + "api/get_members";
+    public static String url_get_events = BASE_URL + "api/get_event";
 
     public static String perf_name = "dev.adi.poc.rotarydemo.prefs";
 

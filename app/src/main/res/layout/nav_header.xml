@@ -15,6 +15,7 @@
         android:layout_height="70dp" />
 
     <TextView
+        android:id="@+id/tv_nav_username"
         android:layout_toRightOf="@+id/nav_profile_icon"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:layout_centerVertical="true"

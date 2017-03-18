@@ -11,18 +11,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import dev.adi.poc.rotarydemo.R;
 import dev.adi.poc.rotarydemo.model.DashButtonModel;
+import dev.adi.poc.rotarydemo.model.EventModel;
 import dev.adi.poc.rotarydemo.model.MemberModel;
 
 public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<MemberModel> listMembers;
+    List<MemberModel> listMembers;
 
-    public MemberListAdapter(Context context, ArrayList<MemberModel> listMembers) {
+    public MemberListAdapter(Context context, List<MemberModel> listMembers) {
         this.context = context;
         this.listMembers = listMembers;
     }
@@ -45,25 +49,29 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvMemName, tvMemContact, tvMemEmail, tvMemDob, tvMemMarriage, tvMemBloodGroup;
+        TextView tvMemName, tvMemPhone, tvMemEmail, tvMemDob, tvMemDesignation;
+        ImageView ivMemPhoto;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvMemName = (TextView) itemView.findViewById(R.id.tv_mem_name);
-            tvMemContact = (TextView) itemView.findViewById(R.id.tv_mem_contact);
+            tvMemPhone = (TextView) itemView.findViewById(R.id.tv_mem_phone);
             tvMemEmail = (TextView) itemView.findViewById(R.id.tv_mem_email);
             tvMemDob = (TextView) itemView.findViewById(R.id.tv_mem_dob);
-            tvMemMarriage = (TextView) itemView.findViewById(R.id.tv_mem_marriage);
-            tvMemBloodGroup = (TextView) itemView.findViewById(R.id.tv_mem_blood_group);
+            tvMemDesignation = (TextView) itemView.findViewById(R.id.tv_mem_designation);
+            ivMemPhoto = (ImageView) itemView.findViewById(R.id.iv_member_photo);
         }
 
         public void setData(MemberModel model   ) {
             tvMemName.setText(model.memName);
-            tvMemContact.setText(model.memContact);
+            tvMemPhone.setText(model.memPhone);
             tvMemEmail.setText(model.memEmail);
             tvMemDob.setText("DOB : " + model.memDob);
-            tvMemMarriage.setText("Marriage Date : " + model.memMarriage);
-            tvMemBloodGroup.setText("Blood Group : " + model.memBloodGroup);
+            tvMemDesignation.setText(model.memDesignation);
+
+            if (model.memPhoto.length() > 0) {
+                Picasso.with(context).load(model.memPhoto).placeholder(R.drawable.event_placeholder).fit().into(ivMemPhoto);
+            }
         }
     }
 }

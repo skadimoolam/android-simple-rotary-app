@@ -42,7 +42,7 @@ public class LoginPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         context = getContext();
-        preferences = context.getSharedPreferences(Config.perf_name, context.MODE_PRIVATE);
+        preferences = context.getSharedPreferences(Config.perf_name, Context.MODE_PRIVATE);
         sharePrefEditor = preferences.edit();
 
         View view = inflater.inflate(R.layout.splash_page_3, container, false);
@@ -82,14 +82,13 @@ public class LoginPageFragment extends Fragment {
                             sharePrefEditor.putString("user-id", data.get("data.id").toString());
                             sharePrefEditor.apply();
 
-                            Intent intent = new Intent(context, DashboardActivity.class);
-                            intent.putExtra("user_id", data.get("data.id").toString());
-                            startActivity(intent);
+                            progressDialog.dismiss();
+                            startActivity(new Intent(context, DashboardActivity.class));
+                            getActivity().finish();
                         } else {
+                            progressDialog.dismiss();
                             showToast(data.get("message").toString());
-                            Log.i(TAG, "user id: " + data.get("code"));
                         }
-                        progressDialog.dismiss();
                     }
 
                     @Override

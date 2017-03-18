@@ -27,6 +27,7 @@
         <activity android:name=".ui.DashboardActivity" />
         <activity android:name=".ui.DummyActivity" android:parentActivityName=".ui.DashboardActivity" />
         <activity android:name=".ui.MembersActivity" android:parentActivityName=".ui.DashboardActivity" />
+        <activity android:name=".ui.NewsLetterActivity" android:parentActivityName=".ui.DashboardActivity" />
     </application>
 
 </manifest>

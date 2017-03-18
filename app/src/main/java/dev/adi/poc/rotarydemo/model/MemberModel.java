@@ -1,15 +1,26 @@
 package dev.adi.poc.rotarydemo.model;
 
+import com.afollestad.ason.AsonName;
+
 public class MemberModel {
 
-    public String memName, memContact, memEmail, memDob, memMarriage, memBloodGroup;
+    public @AsonName(name = "id") String memId;
+    public @AsonName(name = "name") String memName;
+    public @AsonName(name = "phone") String memPhone;
+    public @AsonName(name = "email") String memEmail;
+    public @AsonName(name = "dob") String memDob;
+    public @AsonName(name = "designation") String memDesignation;
+    public @AsonName(name = "photo") String memPhoto;
 
-    public MemberModel(String memName, String memContact, String memEmail, String memDob, String memMarriage, String memBloodGroup) {
+    public MemberModel() {}
+
+    public MemberModel(String memId, String memName, String memContact, String memEmail, String memDob, String memDesignation, String memPhoto) {
+        this.memId = memId;
         this.memName = memName;
-        this.memContact = memContact;
+        this.memPhone = memContact;
         this.memEmail = memEmail;
         this.memDob = memDob;
-        this.memMarriage = memMarriage;
-        this.memBloodGroup = memBloodGroup;
+        this.memDesignation = memDesignation;
+        this.memPhoto = memPhoto;
     }
 }

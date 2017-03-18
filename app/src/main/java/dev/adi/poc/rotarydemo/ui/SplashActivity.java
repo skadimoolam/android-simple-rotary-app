@@ -3,6 +3,7 @@ package dev.adi.poc.rotarydemo.ui;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -35,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
     ImageView ivLogoMain;
     ViewPager splashSlider;
     ArrayList<Fragment> pageFragments;
+    TabLayout sliderTabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,8 @@ public class SplashActivity extends AppCompatActivity {
 
         if (!preferences.getString("user-data", "test-data").equals("test-data")) {
             startActivity(new Intent(this, DashboardActivity.class));
+            finish();
         }
-
-        Log.i(TAG, preferences.getString("user-data", "test-data"));
 
         pageFragments = new ArrayList<>();
         pageFragments.add(SplashPageFragment.newInstance(R.drawable.splash_img_1));
@@ -62,77 +63,17 @@ public class SplashActivity extends AppCompatActivity {
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), pageFragments);
         splashSlider.setAdapter(pagerAdapter);
 
+        sliderTabs = (TabLayout) findViewById(R.id.tab_slider);
+        sliderTabs.setupWithViewPager(splashSlider, true);
+
         if (getIntent().getBooleanExtra("fromReg", false)) {
             splashSlider.setCurrentItem(3, false);
         }
     }
 
-    public void gotoLast(View view) {
-        splashSlider.setCurrentItem(pageFragments.size());
-    }
-
-    public void gotoNext(View view) {
-        splashSlider.setCurrentItem(splashSlider.getCurrentItem() + 1);
-    }
-
     public void gotoReg(View view) {
         startActivity(new Intent(this, RegisterActivity.class));
     }
-
-//    public void attemptLogin(View view) {
-//        progressDialog = ProgressDialog.show(this, "Loading...", "Please wait!", false);
-//
-//        if (validateForm()) {
-//            if (HttpHelper.hasNetworkAccess(this)) {
-//                Form formData = new Form();
-//                formData.add("username", etUsername.getText().toString());
-//                formData.add("password", etPassword.getText().toString());
-//
-//                HttpHelper.postData(Config.url_login, formData, null, new HttpHelper.OnRequestCompleteListener() {
-//                    @Override
-//                    public void OnSuccess(Ason data) {
-//                        if (data.get("code").equals("1")) {
-//                            sharePrefEditor.putString("user-data", data.toString());
-//                            sharePrefEditor.putString("user-id", data.get("data.id").toString());
-//                            sharePrefEditor.apply();
-//
-//                            Intent intent = new Intent(SplashActivity.this, DashboardActivity.class);
-//                            intent.putExtra("user_id", data.get("data.id").toString());
-//                            startActivity(intent);
-//                        } else {
-//                            showToast(data.get("message").toString());
-//                            Log.i(TAG, "user id: " + data.get("code"));
-//                        }
-//                        progressDialog.dismiss();
-//                    }
-//
-//                    @Override
-//                    public void OnError(String error) {
-//                        showToast(error);
-//                        Log.i(TAG, error);
-//                        progressDialog.dismiss();
-//                    }
-//                });
-//
-//            } else {
-//                showToast("Cannot connect to the Internet");
-//            }
-//        }
-//    }
-//
-//    private boolean validateForm() {
-//        if (etUsername.getText().length() == 0) {
-//            etUsername.setError("Username cannot be blank");
-//            return false;
-//        }
-//
-//        if (etPassword.getText().length() == 0) {
-//            etPassword.setError("Password cannot be blank");
-//            return false;
-//        }
-//
-//        return true;
-//    }
 
     private void showToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
@@ -156,28 +97,4 @@ public class SplashActivity extends AppCompatActivity {
             return pageFragments.size();
         }
     }
-
-//    public void gotoLogin(View view) {
-//        Intent intent = new Intent(this, LoginActivity.class);
-//        ActivityOptions options = null;
-//
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-//            options = ActivityOptions.makeSceneTransitionAnimation(this, new Pair<View, String>(ivLogoMain, "anim_logo"));
-//            startActivity(intent, options.toBundle());
-//        } else {
-//            startActivity(intent);
-//        }
-//    }
-//
-//    public void gotoSignup(View view) {
-//        Intent intent = new Intent(this, RegisterActivity.class);
-//        ActivityOptions options = null;
-//
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-//            options = ActivityOptions.makeSceneTransitionAnimation(this, new Pair<View, String>(ivLogoMain, "anim_logo"));
-//            startActivity(intent, options.toBundle());
-//        } else {
-//            startActivity(intent);
-//        }
-//    }
 }
