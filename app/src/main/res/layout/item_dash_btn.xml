@@ -12,10 +12,3 @@
         android:layout_height="wrap_content"/>
 
 </LinearLayout>
-
-<!--<TextView-->
-<!--android:textAlignment="center"-->
-<!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"-->
-<!--android:text="About us"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="wrap_content"/>-->

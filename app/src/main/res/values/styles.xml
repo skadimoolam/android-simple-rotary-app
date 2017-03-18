@@ -25,8 +25,6 @@
         <item name="android:layout_weight">.7</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:padding">@dimen/activity_horizontal_margin</item>
-        <!--<item name="android:background">#839fb0</item>-->
-        <!--<item name="android:background">#f2998b7d</item>-->
     </style>
 
     <style name="LoginBtnStyle">
@@ -47,25 +45,14 @@
         <item name="android:inputType">text</item>
     </style>
 
-    <style name="CustTextInput">
-        <item name="android:background">#aaFFFFFF</item>
-    </style>
-
-    <style name="InfoCard">
-        <item name="android:background">@drawable/bg_info_card</item>
-        <item name="android:layout_marginBottom">6dp</item>
-        <item name="android:layout_marginTop">6dp</item>
-    </style>
 
     <style name="SplashBtn">
         <item name="android:layout_gravity">center</item>
-        <!--<item name="android:layout_weight">.5</item>-->
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">0dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:background">?attr/selectableItemBackground</item>
-        <!--<item name="android:background">@android:color/transparent</item>-->
         <item name="android:textAlignment">viewStart</item>
         <item name="android:textSize">18dp</item>
     </style>
@@ -96,20 +83,6 @@
         <item name="android:inputType">text</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginBottom">10dp</item>
-    </style>
-
-    <style name="EtBgWhiteNoBorderOld">
-        <item name="colorAccent">@android:color/white</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:inputType">text</item>
-        <item name="android:background">@drawable/bg_cust_et</item>
-        <item name="android:paddingTop">6dp</item>
-        <item name="android:paddingBottom">6dp</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:gravity">center_vertical</item>
     </style>
 
 </resources>

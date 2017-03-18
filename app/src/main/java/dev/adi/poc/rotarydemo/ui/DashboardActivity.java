@@ -2,6 +2,8 @@ package dev.adi.poc.rotarydemo.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,7 +31,7 @@ import dev.adi.poc.rotarydemo.adapter.DashGridAdapter;
 import dev.adi.poc.rotarydemo.helper.Config;
 import dev.adi.poc.rotarydemo.model.DashButtonModel;
 
-public class DashboardActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends AppCompatActivity implements     NavigationView.OnNavigationItemSelectedListener {
 
     final String TAG = DashboardActivity.class.getSimpleName();
     SharedPreferences.Editor sharePrefEditor;
@@ -59,24 +61,27 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         rvDashGrid = (RecyclerView) findViewById(R.id.rv_dash_grid);
         rvDashGrid.setLayoutManager(new GridLayoutManager(this, 3));
 
-//        Toast.makeText(this, ""+navMenu.getHeaderCount(),Toast.LENGTH_SHORT).show();
-
         TextView tvNavUsername = (TextView) navMenu.getHeaderView(0).findViewById(R.id.tv_nav_username);
         tvNavUsername.setText(ason.get("username").toString());
 
-        ArrayList<DashButtonModel> listButtons = new ArrayList<>();
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_about, DummyActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_avenue_service, DummyActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_calender, DummyActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_clue_meeting, DummyActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_projects, DummyActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_team, DummyActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_home, DummyActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_member_directory, MembersActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_news_letter, NewsLetterActivity.class));
-        listButtons.add(new DashButtonModel(R.drawable.dash_icon_search, DummyActivity.class));
+        new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<DashButtonModel> listButtons = new ArrayList<>();
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_about, DummyActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_avenue_service, DummyActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_calender, DummyActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_clue_meeting, DummyActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_projects, DummyActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_team, DummyActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_home, DummyActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_member_directory, MembersActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_news_letter, NewsLetterActivity.class));
+                listButtons.add(new DashButtonModel(R.drawable.dash_icon_search, DummyActivity.class));
 
-        rvDashGrid.setAdapter(new DashGridAdapter(this, listButtons));
+                rvDashGrid.setAdapter(new DashGridAdapter(DashboardActivity.this, listButtons));
+            }
+        }.run();
     }
 
     @Override
@@ -105,46 +110,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View view) {
-        Intent intent = null;
-        switch (view.getId()) {
-            case R.id.dash_btn_district:
-                intent = new Intent(DashboardActivity.this, DummyActivity.class);
-                break;
-
-            case R.id.dash_btn_memebers:
-                intent = new Intent(DashboardActivity.this, MembersActivity.class);
-                break;
-
-            case R.id.dash_btn_calender:
-                intent = new Intent(DashboardActivity.this, DummyActivity.class);
-                break;
-
-            case R.id.dash_btn_notice:
-                intent = new Intent(DashboardActivity.this, DummyActivity.class);
-                break;
-
-            case R.id.dash_btn_bday:
-                intent = new Intent(DashboardActivity.this, DummyActivity.class);
-                break;
-
-            case R.id.dash_btn_events:
-                intent = new Intent(DashboardActivity.this, DummyActivity.class);
-                break;
-
-            case R.id.dash_btn_createclub:
-                intent = new Intent(DashboardActivity.this, DummyActivity.class);
-                break;
-        }
-
-        if (intent != null) {
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Nothing selected", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override

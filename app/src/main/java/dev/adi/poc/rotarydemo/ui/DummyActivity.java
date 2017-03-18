@@ -2,6 +2,9 @@ package dev.adi.poc.rotarydemo.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import dev.adi.poc.rotarydemo.R;
 
 public class DummyActivity extends AppCompatActivity {
@@ -16,5 +19,20 @@ public class DummyActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Sample Page");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

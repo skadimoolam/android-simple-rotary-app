@@ -70,7 +70,7 @@
                         android:id="@+id/et_last_name"
                         android:inputType="textCapWords"
                         android:hint="Last Name"
-                        android:nextFocusDown="@+id/et_last_name"/>
+                        android:nextFocusDown="@+id/et_username"/>
 
                 </android.support.design.widget.TextInputLayout>
 
