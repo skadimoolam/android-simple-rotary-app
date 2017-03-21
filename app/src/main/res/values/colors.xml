@@ -6,4 +6,9 @@
 
     <color name="formBg">#e20330</color>
     <color name="sideNavBg">#d05478</color>
+
+    <color name="colorTextHeading">#000</color>
+    <color name="colorTextSubHeading">#222</color>
+
+    <color name="bgDashBtn">#66F2F2F2</color>
 </resources>

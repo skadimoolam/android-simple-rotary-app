@@ -2,6 +2,7 @@ package dev.adi.poc.rotarydemo.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -14,13 +15,17 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.ason.Ason;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -31,7 +36,7 @@ import dev.adi.poc.rotarydemo.adapter.DashGridAdapter;
 import dev.adi.poc.rotarydemo.helper.Config;
 import dev.adi.poc.rotarydemo.model.DashButtonModel;
 
-public class DashboardActivity extends AppCompatActivity implements     NavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     final String TAG = DashboardActivity.class.getSimpleName();
     SharedPreferences.Editor sharePrefEditor;
@@ -48,7 +53,7 @@ public class DashboardActivity extends AppCompatActivity implements     Navigati
 
         preferences = getSharedPreferences(Config.perf_name, MODE_PRIVATE);
         sharePrefEditor = preferences.edit();
-        Ason ason = new Ason(preferences.getString("user-data", "test-data"));
+        final Ason ason = new Ason(preferences.getString("user-data", "test-data"));
 
         getSupportActionBar().setTitle("Welcome " + ason.get("first_name").toString());
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -58,28 +63,34 @@ public class DashboardActivity extends AppCompatActivity implements     Navigati
         navDrawer = (DrawerLayout) findViewById(R.id.drawer);
         navMenu = (NavigationView) findViewById(R.id.nav);
         navMenu.setNavigationItemSelectedListener(this);
-        rvDashGrid = (RecyclerView) findViewById(R.id.rv_dash_grid);
-        rvDashGrid.setLayoutManager(new GridLayoutManager(this, 3));
 
         TextView tvNavUsername = (TextView) navMenu.getHeaderView(0).findViewById(R.id.tv_nav_username);
         tvNavUsername.setText(ason.get("username").toString());
 
+        findViewById(R.id.ll_btn_about).setOnClickListener(this);
+        findViewById(R.id.ll_btn_avenue_service).setOnClickListener(this);
+        findViewById(R.id.ll_btn_calender).setOnClickListener(this);
+        findViewById(R.id.ll_btn_club_meeting).setOnClickListener(this);
+        findViewById(R.id.ll_btn_district_projects).setOnClickListener(this);
+        findViewById(R.id.ll_btn_district_team).setOnClickListener(this);
+        findViewById(R.id.ll_btn_search).setOnClickListener(this);
+        findViewById(R.id.ll_btn_member_directory).setOnClickListener(this);
+        findViewById(R.id.ll_btn_news_letter).setOnClickListener(this);
+
         new Runnable() {
             @Override
             public void run() {
-                ArrayList<DashButtonModel> listButtons = new ArrayList<>();
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_about, DummyActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_avenue_service, DummyActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_calender, DummyActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_clue_meeting, DummyActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_projects, DummyActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_district_team, DummyActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_home, DummyActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_member_directory, MembersActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_news_letter, NewsLetterActivity.class));
-                listButtons.add(new DashButtonModel(R.drawable.dash_icon_search, DummyActivity.class));
+                navMenu.getHeaderView(0).findViewById(R.id.iv_profile_edit).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        navDrawer.closeDrawer(Gravity.START);
+                        startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
+                    }
+                });
 
-                rvDashGrid.setAdapter(new DashGridAdapter(DashboardActivity.this, listButtons));
+                if (ason.get("profile_photo").toString().length() > 0) {
+                    Picasso.with(DashboardActivity.this).load(ason.get("profile_photo").toString()).fit().into((ImageView) navMenu.getHeaderView(0).findViewById(R.id.iv_profile_img));
+                }
             }
         }.run();
     }
@@ -116,5 +127,66 @@ public class DashboardActivity extends AppCompatActivity implements     Navigati
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    public void gotoView(View view) {
+//        Intent i = new Intent();
+//
+//        switch (view.getId()) {
+//            case R.id.ll_btn_about:
+//                i.setClassName(this, "DummyActivity");
+//                break;
+//        }
+//
+//        startActivity(i);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent i = new Intent();
+
+        switch (view.getId()) {
+            case R.id.ll_btn_about:
+                i.setClass(this, DummyActivity.class);
+                break;
+
+            case R.id.ll_btn_avenue_service:
+                i.setClass(this, DummyActivity.class);
+                break;
+
+            case R.id.ll_btn_calender:
+                i.setClass(this, DummyActivity.class);
+                break;
+
+            case R.id.ll_btn_club_meeting:
+                i.setClass(this, DummyActivity.class);
+                break;
+
+            case R.id.ll_btn_district_team:
+                i.setClass(this, DummyActivity.class);
+                break;
+
+            case R.id.ll_btn_district_projects:
+                i.setClass(this, DummyActivity.class);
+                break;
+
+            case R.id.ll_btn_search:
+                i.setClass(this, DummyActivity.class);
+                break;
+
+            case R.id.ll_btn_member_directory:
+                i.setClass(this, MembersActivity.class);
+                break;
+
+            case R.id.ll_btn_news_letter:
+                i.setClass(this, NewsLetterActivity.class);
+                break;
+
+            default:
+                i.setClass(this, DummyActivity.class);
+                break;
+        }
+
+        startActivity(i);
     }
 }

@@ -7,7 +7,7 @@
     android:layout_height="100dp">
 
     <ImageView
-        android:id="@+id/nav_profile_icon"
+        android:id="@+id/iv_profile_img"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
         android:src="@drawable/ic_account_circle"
@@ -16,12 +16,22 @@
 
     <TextView
         android:id="@+id/tv_nav_username"
-        android:layout_toRightOf="@+id/nav_profile_icon"
+        android:layout_toRightOf="@+id/iv_profile_img"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:layout_centerVertical="true"
         android:text="Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <ImageView
+        android:background="?attr/selectableItemBackground"
+        android:id="@+id/iv_profile_edit"
+        android:layout_margin="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_edit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
 
     <View
         android:background="@android:color/darker_gray"

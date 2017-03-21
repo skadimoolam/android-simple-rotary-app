@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        style="@style/EventPhoto"
+        android:id="@+id/iv_event_photo"
+        android:src="@drawable/event_placeholder"/>
+
+    <TextView
+        android:id="@+id/tv_event_title"
+        android:text="Some Long Long Title for an event"
+        style="@style/EventText.Title"/>
+
+    <TextView
+        android:id="@+id/tv_event_date"
+        android:text="Event Date : 10-03-2011"
+        style="@style/EventText.Date"/>
+
+    <TextView
+        android:id="@+id/tv_event_desc"
+        android:text="Some Long Long Title for an event, Some Long Long Title for an event, Some Long Long Title for an event, Some Long Long Title for an event, Some Long Long Title for an event, Some Long Long Title for an event"
+        style="@style/EventText.Desc"/>
+
+</LinearLayout>

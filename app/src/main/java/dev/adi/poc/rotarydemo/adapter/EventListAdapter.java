@@ -1,6 +1,7 @@
 package dev.adi.poc.rotarydemo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
@@ -20,6 +21,8 @@ import java.util.List;
 import dev.adi.poc.rotarydemo.R;
 import dev.adi.poc.rotarydemo.model.EventModel;
 import dev.adi.poc.rotarydemo.model.MemberModel;
+import dev.adi.poc.rotarydemo.ui.EventActivity;
+import dev.adi.poc.rotarydemo.ui.MemberActivity;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.ViewHolder> {
 
@@ -43,10 +46,9 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
         holder.hostView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(context)
-                    .setTitle(model.eveName)
-                    .setMessage(model.eveDescription)
-                    .show();
+                Intent i = new Intent(context, EventActivity.class);
+                i.putExtra("event-detail", model);
+                context.startActivity(i);
             }
         });
     }

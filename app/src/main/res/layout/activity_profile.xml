@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:background="@color/formBg">
+
+
+    <TextView
+        android:id="@+id/tv_profile_username"
+        android:text="Username : Adi"
+        style="@style/ProfileText"/>
+
+    <TextView
+        android:id="@+id/tv_profile_email"
+        android:text="Email : adi@adi.com"
+        style="@style/ProfileText"/>
+
+    <Button
+        android:layout_weight="0"
+        android:onClick="uploadPhoto"
+        style="@style/LoginBtnStyle"
+        android:text="Upload Photo"
+        android:id="@+id/btn_profile_upload_pic" />
+
+</LinearLayout>
+
+<!--<android.support.design.widget.TextInputLayout-->
+<!--app:hintTextAppearance="@style/TextAppearenceNew"-->
+<!--android:textColorHint="@android:color/white"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content">-->
+
+<!--<EditText-->
+    <!--style="@style/EtBgWhiteNoBorder"-->
+    <!--android:id="@+id/et_first_name"-->
+    <!--android:inputType="textCapWords"-->
+    <!--android:hint="First Name"-->
+    <!--android:nextFocusDown="@+id/et_last_name"/>-->
+
+<!--</android.support.design.widget.TextInputLayout>-->
+
+<!--<android.support.design.widget.TextInputLayout-->
+<!--app:hintTextAppearance="@style/TextAppearenceNew"-->
+<!--android:textColorHint="@android:color/white"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content">-->
+
+<!--<EditText-->
+    <!--style="@style/EtBgWhiteNoBorder"-->
+    <!--android:id="@+id/et_last_name"-->
+    <!--android:inputType="textCapWords"-->
+    <!--android:hint="Last Name"-->
+    <!--android:nextFocusDown="@+id/et_username"/>-->
+
+<!--</android.support.design.widget.TextInputLayout>-->
+
+<!--<Button-->
+<!--android:layout_weight="0"-->
+<!--android:onClick="attemptUpdate"-->
+<!--style="@style/LoginBtnStyle"-->
+<!--android:text="Update"-->
+<!--android:id="@+id/email_sign_in_button" />-->
+

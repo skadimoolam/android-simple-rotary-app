@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="InfoCardView">
-        <attr name="heading" format="string" />
-    </declare-styleable>
-
-    <declare-styleable name="DashBtn">
-        <attr name="title" format="string" />
-        <attr name="subTitle" format="string" />
-        <attr name="opens" format="string" />
-        <attr name="bgColor" format="color" />
-    </declare-styleable>
-
-    <declare-styleable name="MembersBtn">
-        <attr name="memberTitle" format="string" />
+    <declare-styleable name="DashGridBtn">
+        <attr name="btn_title" format="string" />
+        <attr name="btn_img" format="integer" />
     </declare-styleable>
 </resources>

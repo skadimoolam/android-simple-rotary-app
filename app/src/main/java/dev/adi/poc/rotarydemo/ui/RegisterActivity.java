@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -17,7 +16,6 @@ import com.afollestad.bridge.Form;
 import dev.adi.poc.rotarydemo.R;
 import dev.adi.poc.rotarydemo.helper.Config;
 import dev.adi.poc.rotarydemo.helper.HttpHelper;
-import dev.adi.poc.rotarydemo.helper.UrlHelper;
 
 public class RegisterActivity extends AppCompatActivity {
 

@@ -1,6 +1,5 @@
 package dev.adi.poc.rotarydemo.ui;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
@@ -10,14 +9,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.afollestad.ason.Ason;
-import com.afollestad.bridge.Form;
 
 import java.util.ArrayList;
 
@@ -25,7 +18,6 @@ import dev.adi.poc.rotarydemo.R;
 import dev.adi.poc.rotarydemo.fragment.LoginPageFragment;
 import dev.adi.poc.rotarydemo.fragment.SplashPageFragment;
 import dev.adi.poc.rotarydemo.helper.Config;
-import dev.adi.poc.rotarydemo.helper.HttpHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -55,9 +47,9 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         pageFragments = new ArrayList<>();
-        pageFragments.add(SplashPageFragment.newInstance(R.drawable.splash_img_1));
+        pageFragments.add(SplashPageFragment.newInstance(R.drawable.bg_logo_red));
+        pageFragments.add(SplashPageFragment.newInstance(R.drawable.bg_logo_pic));
         pageFragments.add(SplashPageFragment.newInstance(R.drawable.splash_img_2));
-        pageFragments.add(SplashPageFragment.newInstance(R.drawable.splash_img_3));
         pageFragments.add(LoginPageFragment.newInstance());
 
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), pageFragments);
@@ -73,10 +65,6 @@ public class SplashActivity extends AppCompatActivity {
 
     public void gotoReg(View view) {
         startActivity(new Intent(this, RegisterActivity.class));
-    }
-
-    private void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     public class PagerAdapter extends FragmentStatePagerAdapter {
