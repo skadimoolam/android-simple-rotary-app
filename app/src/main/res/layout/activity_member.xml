@@ -1,81 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <ImageView
-        style="@style/MemberPhoto"
-        android:id="@+id/iv_member_photo"
-        android:src="@drawable/event_placeholder"/>
-
-    <TextView
-        android:id="@+id/tv_member_designation"
-        android:text="President"
-        style="@style/MemberDesignation"/>
-
-    <TextView
-        android:text="Contact"
-        style="@style/MemberHeading"/>
-    <RelativeLayout
-        style="@style/MemberInfoBox">
-
-        <TextView
-            style="@style/MemberInfoBoxHeading"
-            android:text="Mobile"/>
-
-        <TextView
-            android:id="@+id/tv_member_phone"
-            style="@style/MemberInfoBoxSubHeading"
-            android:text="7897897899"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
-            style="@style/MemberInfoBoxIcon"
-            android:src="@drawable/ic_call"/>
-
-        <View
-            style="@style/MemberInfoBoxBorder"/>
-    </RelativeLayout>
-    <RelativeLayout
-        style="@style/MemberInfoBox">
+            android:id="@+id/iv_member_photo"
+            style="@style/MemberPhoto"
+            android:src="@drawable/event_placeholder"/>
 
         <TextView
-            style="@style/MemberInfoBoxHeading"
-            android:text="Email"/>
+            android:id="@+id/tv_member_designation"
+            android:text="President"
+            style="@style/MemberDesignation"/>
 
         <TextView
-            android:id="@+id/tv_member_email"
-            style="@style/MemberInfoBoxSubHeading"
-            android:text="someone@somewhare.com"/>
+            android:text="Contact"
+            style="@style/MemberHeading"/>
+        <RelativeLayout
+            style="@style/MemberInfoBox">
 
-        <ImageView
-            style="@style/MemberInfoBoxIcon"
-            android:src="@drawable/ic_send"/>
+            <TextView
+                style="@style/MemberInfoBoxHeading"
+                android:text="Mobile"/>
 
-        <View
-            style="@style/MemberInfoBoxBorder"/>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_member_phone"
+                style="@style/MemberInfoBoxSubHeading"
+                android:text="7897897899"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"/>
 
-    <TextView
-        android:text="Info"
-        style="@style/MemberHeading"/>
-    <RelativeLayout
-        style="@style/MemberInfoBox">
+            <ImageView
+                android:id="@+id/iv_btn_action_call"
+                style="@style/MemberInfoBoxIcon"
+                android:src="@drawable/ic_call"/>
+
+            <View
+                style="@style/MemberInfoBoxBorder"/>
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/MemberInfoBox">
+
+            <TextView
+                style="@style/MemberInfoBoxHeading"
+                android:text="Email"/>
+
+            <TextView
+                android:id="@+id/tv_member_email"
+                style="@style/MemberInfoBoxSubHeading"
+                android:text="someone@somewhare.com"/>
+
+            <ImageView
+                android:id="@+id/iv_btn_action_send"
+                style="@style/MemberInfoBoxIcon"
+                android:src="@drawable/ic_send"/>
+
+            <View
+                style="@style/MemberInfoBoxBorder"/>
+        </RelativeLayout>
 
         <TextView
-            style="@style/MemberInfoBoxHeading"
-            android:text="Date of Birth"/>
+            android:text="Info"
+            style="@style/MemberHeading"/>
+        <RelativeLayout
+            style="@style/MemberInfoBox">
 
-        <TextView
-            android:id="@+id/tv_member_dob"
-            style="@style/MemberInfoBoxSubHeading"
-            android:text="11-08-1997"/>
+            <TextView
+                style="@style/MemberInfoBoxHeading"
+                android:text="Date of Birth"/>
 
-        <View
-            style="@style/MemberInfoBoxBorder"/>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_member_dob"
+                style="@style/MemberInfoBoxSubHeading"
+                android:text="11-08-1997"/>
 
-</LinearLayout>
+            <View
+                style="@style/MemberInfoBoxBorder"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>

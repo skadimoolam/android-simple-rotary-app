@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_logo_red"
+    tools:context="dev.adi.poc.rotarydemo.ui.DashboardActivity">
+
+    <TableLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1,2">
+
+        <TableRow>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_about"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_about_2"/>
+
+                <TextView
+                    android:text="About"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_avenue_service"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_avenue_service_2"/>
+
+                <TextView
+                    android:text="Avenue Service"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_calender"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_calender_2"/>
+
+                <TextView
+                    android:text="Calender"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_club_meeting"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_clue_meeting_2"/>
+
+                <TextView
+                    android:text="Clue Meeting"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_district_projects"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_district_projects_2"/>
+
+                <TextView
+                    android:text="District Projects"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_district_team"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_district_team_2"/>
+
+                <TextView
+                    android:text="District Team"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_search"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_search_2"/>
+
+                <TextView
+                    android:text="Search"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_member_directory"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_member_directory_2"/>
+
+                <TextView
+                    android:text="Members List"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:onClick="gotoView"
+                android:id="@+id/ll_btn_news_letter"
+                style="@style/DashBtnHolder">
+
+                <ImageView
+                    style="@style/DashBtnImg"
+                    android:src="@drawable/dash_icon_news_letter_2"/>
+
+                <TextView
+                    android:text="News Letter"
+                    style="@style/DashBtnTitle"/>
+
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
+
+</ScrollView>
+
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/rv_dash_grid"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"/>-->

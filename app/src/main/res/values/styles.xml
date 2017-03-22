@@ -32,7 +32,7 @@
         <item name="android:layout_weight">.5</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">#b40226</item>
+        <item name="android:background">@color/bgBtn</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:text">@string/prompt_sign_in</item>
     </style>
@@ -140,6 +140,7 @@
     </style>
 
     <style name="MemberPhoto">
+        <item name="android:background">@drawable/bg_stroke</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
@@ -199,6 +200,8 @@
     </style>
 
     <style name="EventText.Title">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
         <item name="android:textSize">30sp</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
     </style>
@@ -213,4 +216,29 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="DashBtnBox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">180dp</item>
+        <item name="android:layout_margin">1dp</item>
+    </style>
+
+    <style name="DashBtnIcon">
+        <item name="android:textColor">#fff</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">130dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="DashBtnHeading">
+        <item name="android:textColor">#000</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:background">#33f9f9f9</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
 </resources>

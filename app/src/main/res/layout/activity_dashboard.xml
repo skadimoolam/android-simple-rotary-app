@@ -5,155 +5,130 @@
     android:id="@+id/activity_dashboard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_logo_red"
     tools:context="dev.adi.poc.rotarydemo.ui.DashboardActivity">
 
     <TableLayout
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="0,1,2">
+        android:stretchColumns="*">
 
         <TableRow>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_about"
-                style="@style/DashBtnHolder">
+            <RelativeLayout
+                android:id="@+id/rl_btn_about"
+                android:background="#428bca"
+                style="@style/DashBtnBox">
 
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_about_2"/>
+                <dev.adi.poc.rotarydemo.view.FaTextView
+                    android:text="@string/fa_info"
+                    style="@style/DashBtnIcon"/>
 
                 <TextView
                     android:text="About"
-                    style="@style/DashBtnTitle"/>
+                    style="@style/DashBtnHeading"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_btn_avenue_service"
+                android:background="#5cb85c"
+                style="@style/DashBtnBox">
 
-            </LinearLayout>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_avenue_service"
-                style="@style/DashBtnHolder">
-
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_avenue_service_2"/>
+                <dev.adi.poc.rotarydemo.view.FaTextView
+                    android:text="@string/fa_user"
+                    style="@style/DashBtnIcon"/>
 
                 <TextView
-                    android:text="Avenue Service"
-                    style="@style/DashBtnTitle"/>
+                    android:text="Avenue Services"
+                    style="@style/DashBtnHeading"/>
+            </RelativeLayout>
+        </TableRow>
 
-            </LinearLayout>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_calender"
-                style="@style/DashBtnHolder">
+        <TableRow>
+            <RelativeLayout
+                android:id="@+id/rl_btn_calender"
+                android:background="#f37735"
+                style="@style/DashBtnBox">
 
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_calender_2"/>
+                <dev.adi.poc.rotarydemo.view.FaTextView
+                    android:text="@string/fa_calendar"
+                    style="@style/DashBtnIcon"/>
 
                 <TextView
                     android:text="Calender"
-                    style="@style/DashBtnTitle"/>
+                    style="@style/DashBtnHeading"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_btn_club_meeting"
+                android:background="#ffc425"
+                style="@style/DashBtnBox">
 
-            </LinearLayout>
+                <dev.adi.poc.rotarydemo.view.FaTextView
+                    android:text="@string/fa_handshake"
+                    style="@style/DashBtnIcon"/>
+
+                <TextView
+                    android:text="Club Meeting"
+                    style="@style/DashBtnHeading"/>
+            </RelativeLayout>
         </TableRow>
 
         <TableRow>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_club_meeting"
-                style="@style/DashBtnHolder">
+            <RelativeLayout
+                android:id="@+id/rl_btn_district_projects"
+                android:background="#3fbfbb"
+                style="@style/DashBtnBox">
 
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_clue_meeting_2"/>
-
-                <TextView
-                    android:text="Clue Meeting"
-                    style="@style/DashBtnTitle"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_district_projects"
-                style="@style/DashBtnHolder">
-
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_district_projects_2"/>
+                <dev.adi.poc.rotarydemo.view.FaTextView
+                    android:text="@string/fa_suitcase"
+                    style="@style/DashBtnIcon"/>
 
                 <TextView
                     android:text="District Projects"
-                    style="@style/DashBtnTitle"/>
+                    style="@style/DashBtnHeading"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_btn_district_teams"
+                android:background="#d147d1"
+                style="@style/DashBtnBox">
 
-            </LinearLayout>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_district_team"
-                style="@style/DashBtnHolder">
-
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_district_team_2"/>
+                <dev.adi.poc.rotarydemo.view.FaTextView
+                    android:text="@string/fa_sitemap"
+                    style="@style/DashBtnIcon"/>
 
                 <TextView
-                    android:text="District Team"
-                    style="@style/DashBtnTitle"/>
-
-            </LinearLayout>
+                    android:text="District Teams"
+                    style="@style/DashBtnHeading"/>
+            </RelativeLayout>
         </TableRow>
 
         <TableRow>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_search"
-                style="@style/DashBtnHolder">
+            <RelativeLayout
+                android:id="@+id/rl_btn_news"
+                android:background="#c3cb71"
+                style="@style/DashBtnBox">
 
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_search_2"/>
+                <dev.adi.poc.rotarydemo.view.FaTextView
+                    android:text="@string/fa_newspaper"
+                    style="@style/DashBtnIcon"/>
 
                 <TextView
-                    android:text="Search"
-                    style="@style/DashBtnTitle"/>
+                    android:text="NEWS"
+                    style="@style/DashBtnHeading"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_btn_members"
+                android:background="#708090"
+                style="@style/DashBtnBox">
 
-            </LinearLayout>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_member_directory"
-                style="@style/DashBtnHolder">
-
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_member_directory_2"/>
+                <dev.adi.poc.rotarydemo.view.FaTextView
+                    android:text="@string/fa_users"
+                    style="@style/DashBtnIcon"/>
 
                 <TextView
                     android:text="Members List"
-                    style="@style/DashBtnTitle"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:onClick="gotoView"
-                android:id="@+id/ll_btn_news_letter"
-                style="@style/DashBtnHolder">
-
-                <ImageView
-                    style="@style/DashBtnImg"
-                    android:src="@drawable/dash_icon_news_letter_2"/>
-
-                <TextView
-                    android:text="News Letter"
-                    style="@style/DashBtnTitle"/>
-
-            </LinearLayout>
+                    style="@style/DashBtnHeading"/>
+            </RelativeLayout>
         </TableRow>
 
     </TableLayout>
 
 </ScrollView>
-
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/rv_dash_grid"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"/>-->

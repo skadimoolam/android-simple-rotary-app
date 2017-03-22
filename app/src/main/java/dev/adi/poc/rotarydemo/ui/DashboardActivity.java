@@ -44,7 +44,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     
     DrawerLayout navDrawer;
     NavigationView navMenu;
-    RecyclerView rvDashGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,19 +66,18 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         TextView tvNavUsername = (TextView) navMenu.getHeaderView(0).findViewById(R.id.tv_nav_username);
         tvNavUsername.setText(ason.get("username").toString());
 
-        findViewById(R.id.ll_btn_about).setOnClickListener(this);
-        findViewById(R.id.ll_btn_avenue_service).setOnClickListener(this);
-        findViewById(R.id.ll_btn_calender).setOnClickListener(this);
-        findViewById(R.id.ll_btn_club_meeting).setOnClickListener(this);
-        findViewById(R.id.ll_btn_district_projects).setOnClickListener(this);
-        findViewById(R.id.ll_btn_district_team).setOnClickListener(this);
-        findViewById(R.id.ll_btn_search).setOnClickListener(this);
-        findViewById(R.id.ll_btn_member_directory).setOnClickListener(this);
-        findViewById(R.id.ll_btn_news_letter).setOnClickListener(this);
-
         new Runnable() {
             @Override
             public void run() {
+                findViewById(R.id.rl_btn_about).setOnClickListener(DashboardActivity.this);
+                findViewById(R.id.rl_btn_avenue_service).setOnClickListener(DashboardActivity.this);
+                findViewById(R.id.rl_btn_calender).setOnClickListener(DashboardActivity.this);
+                findViewById(R.id.rl_btn_club_meeting).setOnClickListener(DashboardActivity.this);
+                findViewById(R.id.rl_btn_district_projects).setOnClickListener(DashboardActivity.this);
+                findViewById(R.id.rl_btn_district_teams).setOnClickListener(DashboardActivity.this);
+                findViewById(R.id.rl_btn_members).setOnClickListener(DashboardActivity.this);
+                findViewById(R.id.rl_btn_news).setOnClickListener(DashboardActivity.this);
+
                 navMenu.getHeaderView(0).findViewById(R.id.iv_profile_edit).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -129,56 +127,43 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         return true;
     }
 
-    public void gotoView(View view) {
-//        Intent i = new Intent();
-//
-//        switch (view.getId()) {
-//            case R.id.ll_btn_about:
-//                i.setClassName(this, "DummyActivity");
-//                break;
-//        }
-//
-//        startActivity(i);
-    }
-
     @Override
     public void onClick(View view) {
         Intent i = new Intent();
 
         switch (view.getId()) {
-            case R.id.ll_btn_about:
+            case R.id.rl_btn_about:
+                i.putExtra("data-title", "About the Club");
+                i.putExtra("data-logo", R.drawable.logo_trans);
+                i.putExtra("data-text", getResources().getString(R.string.about_page_prompt));
+                i.setClass(this, TextOnlyActivity.class);
+                break;
+
+            case R.id.rl_btn_avenue_service:
+                i.setClass(this, AvenueServicesActivity.class);
+                break;
+
+            case R.id.rl_btn_calender:
                 i.setClass(this, DummyActivity.class);
                 break;
 
-            case R.id.ll_btn_avenue_service:
+            case R.id.rl_btn_club_meeting:
                 i.setClass(this, DummyActivity.class);
                 break;
 
-            case R.id.ll_btn_calender:
+            case R.id.rl_btn_district_teams:
                 i.setClass(this, DummyActivity.class);
                 break;
 
-            case R.id.ll_btn_club_meeting:
+            case R.id.rl_btn_district_projects:
                 i.setClass(this, DummyActivity.class);
                 break;
 
-            case R.id.ll_btn_district_team:
-                i.setClass(this, DummyActivity.class);
-                break;
-
-            case R.id.ll_btn_district_projects:
-                i.setClass(this, DummyActivity.class);
-                break;
-
-            case R.id.ll_btn_search:
-                i.setClass(this, DummyActivity.class);
-                break;
-
-            case R.id.ll_btn_member_directory:
+            case R.id.rl_btn_members:
                 i.setClass(this, MembersActivity.class);
                 break;
 
-            case R.id.ll_btn_news_letter:
+            case R.id.rl_btn_news:
                 i.setClass(this, NewsLetterActivity.class);
                 break;
 

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.afollestad.bridge.Request;
 import com.afollestad.bridge.Response;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -46,6 +48,9 @@ public class ProfileActivity extends AppCompatActivity {
     SharedPreferences.Editor sharePrefEditor;
     SharedPreferences preferences;
     Ason prefAson;
+
+    File profileImage;
+    String profileUrl;
 
     int READ_RESULT_CODE = 42;
 
@@ -70,28 +75,53 @@ public class ProfileActivity extends AppCompatActivity {
 
         tvEmail.setText("Email : " + prefAson.get("email").toString());
         tvUsername.setText("Username : " + prefAson.get("username").toString());
+
+        if (prefAson.get("profile_photo").toString().length() > 0) {
+            Picasso.with(this).load(prefAson.get("profile_photo").toString()).fit().into((ImageView) findViewById(R.id.iv_profile_tmp));
+        }
     }
 
     private void showToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
-    public void uploadPhoto(View view) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == READ_RESULT_CODE && resultCode == RESULT_OK) {
+            profileUrl = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            profileImage = new File(profileUrl);
+
+            Picasso.with(this).load(profileImage).fit().into((ImageView) findViewById(R.id.iv_profile_tmp));
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void browsePhoto(View view) {
         new MaterialFilePicker()
             .withActivity(this)
             .withRequestCode(READ_RESULT_CODE)
             .start();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == READ_RESULT_CODE && resultCode == RESULT_OK) {
+    public void uploadProfile(View view) {
+        if (profileImage != null) {
             MultipartForm form = new MultipartForm();
             form.add("api", "update");
             form.add("update_other_user_id", prefAson.get("id").toString());
             form.add("email", prefAson.get("email").toString());
             try {
-                form.add("photo_name", new File(data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)));
+                form.add("photo_name", profileImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -108,8 +138,8 @@ public class ProfileActivity extends AppCompatActivity {
                             Ason ason = new Ason(response.asString());
                             if (ason.get("code").equals("success")) {
                                 prefAson.put("profile_photo", ason.get("data.profile_photo").toString());
-//                                prefAson.put("first_name", ason.get("data.first_name").toString());
-//                                prefAson.put("last_name", ason.get("data.last_name").toString());
+                                //                                prefAson.put("first_name", ason.get("data.first_name").toString());
+                                //                                prefAson.put("last_name", ason.get("data.last_name").toString());
                                 sharePrefEditor.putString("user-data", prefAson.toString());
                                 sharePrefEditor.apply();
                             }
@@ -119,21 +149,8 @@ public class ProfileActivity extends AppCompatActivity {
             } else {
                 showToast("Cannot connect to the Internet");
             }
-       }
-
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    public void attemptUpdate(View view) {
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            finish();
+        } else {
+            showToast("Select an Image to upload");
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

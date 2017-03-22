@@ -3,11 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin"
     android:background="@color/formBg">
-
 
     <TextView
         android:id="@+id/tv_profile_username"
@@ -19,11 +17,32 @@
         android:text="Email : adi@adi.com"
         style="@style/ProfileText"/>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_profile_tmp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_account_circle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <Button
+            android:onClick="browsePhoto"
+            style="@style/LoginBtnStyle"
+            android:layout_margin="0dp"
+            android:layout_gravity="center_vertical"
+            android:text="Browse Photo"/>
+
+    </LinearLayout>
+
     <Button
         android:layout_weight="0"
-        android:onClick="uploadPhoto"
+        android:onClick="uploadProfile"
         style="@style/LoginBtnStyle"
-        android:text="Upload Photo"
+        android:text="Upload Profile"
         android:id="@+id/btn_profile_upload_pic" />
 
 </LinearLayout>

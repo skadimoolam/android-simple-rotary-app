@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fa_info">&#xf129;</string>
+    <string name="fa_user">&#xf007;</string>
+    <string name="fa_calendar">&#xf073;</string>
+    <string name="fa_suitcase">&#xf0f2;</string>
+    <string name="fa_search">&#xf002;</string>
+    <string name="fa_users">&#xf0c0;</string>
+    <string name="fa_newspaper">&#xf1ea;</string>
+    <string name="fa_sitemap">&#xf0e8;</string>
+    <string name="fa_handshake">&#xf2b5;</string>
+</resources>
