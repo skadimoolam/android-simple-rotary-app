@@ -2,20 +2,12 @@ package dev.adi.poc.rotarydemo.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Point;
-import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,14 +19,8 @@ import android.widget.Toast;
 import com.afollestad.ason.Ason;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
 import dev.adi.poc.rotarydemo.R;
-import dev.adi.poc.rotarydemo.adapter.DashGridAdapter;
 import dev.adi.poc.rotarydemo.helper.Config;
-import dev.adi.poc.rotarydemo.model.DashButtonModel;
 
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
@@ -88,6 +74,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
                 if (ason.get("profile_photo").toString().length() > 0) {
                     Picasso.with(DashboardActivity.this).load(ason.get("profile_photo").toString()).fit().into((ImageView) navMenu.getHeaderView(0).findViewById(R.id.iv_profile_img));
+                } else {
+                    Toast.makeText(DashboardActivity.this, "Upload a Profile photo", Toast.LENGTH_SHORT).show();
                 }
             }
         }.run();
@@ -148,7 +136,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 break;
 
             case R.id.rl_btn_club_meeting:
-                i.setClass(this, DummyActivity.class);
+                i.setClass(this, ClubMeetingActivity.class);
                 break;
 
             case R.id.rl_btn_district_teams:

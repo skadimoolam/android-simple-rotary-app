@@ -36,7 +36,7 @@
         <activity android:name=".ui.ProfileActivity"/>
         <activity android:name=".ui.TextOnlyActivity"/>
         <activity android:name=".ui.AvenueServicesActivity"/>
-        <activity android:name=".ClubMeetingActivity">
+        <activity android:name=".ui.ClubMeetingActivity">
         </activity>
     </application>
 

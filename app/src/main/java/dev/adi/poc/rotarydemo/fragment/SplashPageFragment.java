@@ -22,7 +22,7 @@ public class SplashPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getArguments().getInt("layout-id", R.layout.activity_dashboard), container, false);
         RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.fragment_slider_image);
-        relativeLayout.setBackgroundResource(getArguments().getInt("image-id", R.drawable.dash_icon_about_2));
+        relativeLayout.setBackgroundResource(getArguments().getInt("image-id", R.drawable.rotary_bg));
 
         return view;
     }
